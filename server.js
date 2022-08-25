@@ -17,7 +17,9 @@ app.get('/', function (req, res) {
 })
 
 app.post('/', function (req, res){
-  console.log(req.body)
+  if (req.body.message === undefined || req.body.message === ''){
+    res.render('pages/index', {error: "Vous n'avez pas entré de message :("})
+  }
 })
 
 app.listen(80)

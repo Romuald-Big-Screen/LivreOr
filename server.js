@@ -20,8 +20,11 @@ app.use(session({
 
 //Routes
 app.get('/', function (req, res) {
-  console.log(req.session.error)
-  res.render('pages/index', {test: 'Salut'})
+  if (req.session.error) {
+    res.locals.error = req.session.error
+    req.session.error = undefined
+  }
+  res.render('pages/index')
 })
 
 app.post('/', function (req, res){
